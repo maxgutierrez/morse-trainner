@@ -1,0 +1,93 @@
+/* @import "compass/css3";
+@import url('https://fonts.googleapis.com/css?family=Inconsolata'); */
+
+body{  
+  font-family: "Roboto", Sans-Serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  /* background-image: url('/img/bg2.jpg'); */
+  background-repeat: no-repeat;
+  background-size: 100vw;  
+  background-color: rgb(8, 6, 39);
+}
+
+h2 {
+  color: rgb(108, 212, 99);
+  text-shadow: 0 0 5px rgb(255, 255, 255);
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+}
+#buttons {
+  padding:auto 0;
+  width: 40px;
+  height: 40px;
+}
+#pontuacao{
+  font-size: 30px;
+}
+#display {
+  color:white;
+  width: 100vw;
+  height: 100px;
+  margin: 0 auto;
+  /* border: 1px solid gray; */
+  font-size: 80px;
+  background-color: rgba(0, 255, 255, 0.207);
+}
+#botoes {
+  width: 100vw;
+  height: 200px;
+  text-align: center;
+  /* padding: 1px; */
+  margin-top: 30px;
+  padding-top: 20px;
+  margin-right: 0%;
+}
+
+button{
+  border-radius: 5px;
+  outline: none;
+  color: white;
+  background: linear-gradient(90deg, #4277429e 0%, #20045f 100%);
+  width: 35px;
+  height: 45px;
+  /* margin: 1px; */
+  margin-bottom: 10px;
+
+  /* animation: gradient 2.5s infinite 0.1s cubic-bezier(0.2, 0.8, 0.2, 1.2) forwards; */
+}
+/* @keyframes gradient {
+  0% { background: linear-gradient(90deg, #00d0ff75 0%, #3a47d58f 100%) }
+  10% { background: linear-gradient(90deg, #d5336970 0%, #daaf5191 100%) }
+  20% { background: linear-gradient(90deg, #fdbb2d79 0%, #3a1c719d 100%) }
+  30% { background: linear-gradient(90deg, #fdbb2d6e 0%, #22c0c3a1 100%) }
+  40% { background: linear-gradient(90deg, #f6ff0067 0%, #3ad59f9c 100%) }
+  50% { background: linear-gradient(90deg, #00c8ff60 0%, #92fe9d88 100%) }
+  60% { background: linear-gradient(90deg, #0600b872 0%, #00ff8896 100%) }
+  70% { background: linear-gradient(90deg, #3f2b9670 0%, #a8c1ffa4 100%) }
+  80% { background: linear-gradient(90deg, #fc466a7e 0%, #3f5efb86 100%) }
+  90% { background: linear-gradient(90deg, #4b6bb774 0%, #18284883 100%) }
+  100% { background: linear-gradient(90deg, #00d0ff79 0%, #3a47d583 100%) }
+} */
+
+table, tr, th {
+  background-color: rgba(0, 255, 255, 0.309);
+  width: 100vw;
+  margin: auto;
+  border: 1px solid rgba(0, 0, 0, 0.104)
+}
+table{
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+th {
+  height: 1px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+#lvl {
+  padding: 0px;
+  font-size: 30px;
+}
