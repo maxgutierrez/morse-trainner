@@ -1,6 +1,6 @@
 /**
  * sistema de lvl:
- *    gerar um determinado n em cada vl
+ *    gerar um determinado n em cada vl 
  * gerar teclado de acordo com lvl
  */
 function numAleatorioEntre(min, max) {//por padrão vai de 0 até o num designado
@@ -53,7 +53,6 @@ const lvlData = {
 const numAleatorio = ()=> numAleatorioEntre(0, lvlData.level)
 const morseAleatorio = ()=> alfMorse[numAleatorio()]
 const mostrarMorse = ()=> display.innerHTML = morseAleatorio()
-const vibrar = (ms)=> window.navigator.vibrate(ms)
 
 const flashPrint = (atraso, clearIn, txtPrint, tag)=>{
   const saveTagContent = tag.innerHTML
@@ -64,33 +63,61 @@ const flashPrint = (atraso, clearIn, txtPrint, tag)=>{
     },clearIn)
   }, atraso);
 }
-botoesEl.forEach(btn => {
-  btn.addEventListener('click', function(){
-
-    lvlData.level = parseInt(lvlData.pontuacao/10) + 1
-    levelEl.innerHTML = lvlData.level
-
-    const escolhido = alfabeto.indexOf(btn.innerHTML) // index da letra no []
-    const morse = display.innerHTML //morse
-    // const pontoAtt = parseInt(pontuacaoEl.innerHTML)
-    
-
-    if (alfMorse[escolhido] == morse){
-      // pontuacaoEl.innerHTML = pontoAtt ++
-      lvlData.pontuacao++
-      pontuacaoEl.innerHTML = lvlData.pontuacao
-
-      flashPrint(0, 100, 'CERTO !', infoEl)
-      flashPrint(200, 500, 'CERTO !', infoEl)
-      mostrarMorse()
-
+const vibrate = morse_str => {
+  const splited = morse_str.split('').join(' ').split('')
+  const patern = splited.map(caractere => {
+    if(caractere == '-'){
+      return 300
     } else {
-      lvlData.pontuacao--
-      pontuacaoEl.innerHTML = lvlData.pontuacao
-      flashPrint(0, 500,`${alfabeto[alfMorse.indexOf(morse)]}`, display)
-      vibrar(200)      
+      return 100
     }
   })
+  window.navigator.vibrate(patern)
+}
+function tag_color(tag, color){
+  tag.style.color = color
+}
+function atraso(ms){
+  return function(fn){
+    setTimeout(() => {
+      fn()
+    }, ms);
+  }
+}
+
+atraso('asdf')
+
+function main(btn){
+
+  lvlData.level = parseInt(lvlData.pontuacao/10) + 1
+  levelEl.innerHTML = lvlData.level
+
+  const escolhido = alfabeto.indexOf(btn) // index da letra no []
+  const morse_display = display.innerHTML //morse_display
+  const letra_display = alfabeto[alfMorse.indexOf(morse_display)]
+  
+  if (alfMorse[escolhido] == morse_display){// SE ACERTO ===
+    lvlData.pontuacao++
+    pontuacaoEl.innerHTML = lvlData.pontuacao
+    flashPrint(0, 500, letra_display, infoEl)
+    atraso(500)(mostrarMorse)
+
+  } else {//                           SE ERRO ===
+    lvlData.pontuacao--
+    pontuacaoEl.innerHTML = lvlData.pontuacao
+    flashPrint(0, 500, letra_display, display)
+  }
+  vibrate(morse_display)
+
+}
+
+botoesEl.forEach(btn => {
+  btn.addEventListener('click', function(){
+    main(btn.innerHTML)
+  })
+})
+document.addEventListener('keydown', function(keyboardEvent){
+  main(keyboardEvent.key.toUpperCase())
 })
 
 mostrarMorse()
