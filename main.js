@@ -100,7 +100,7 @@ function main(btn){
     lvlData.pontuacao++
     pontuacaoEl.innerHTML = lvlData.pontuacao
     flashPrint(0, 500, letra_display, infoEl)
-    atraso(500)(mostrarMorse)
+    atraso(600)(mostrarMorse)
 
   } else {//                           SE ERRO ===
     lvlData.pontuacao--
