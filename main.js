@@ -64,33 +64,52 @@ const flashPrint = (atraso, clearIn, txtPrint, tag)=>{
     },clearIn)
   }, atraso);
 }
-botoesEl.forEach(btn => {
-  btn.addEventListener('click', function(){
-
-    lvlData.level = parseInt(lvlData.pontuacao/10) + 1
-    levelEl.innerHTML = lvlData.level
-
-    const escolhido = alfabeto.indexOf(btn.innerHTML) // index da letra no []
-    const morse = display.innerHTML //morse
-    // const pontoAtt = parseInt(pontuacaoEl.innerHTML)
-    
-
-    if (alfMorse[escolhido] == morse){
-      // pontuacaoEl.innerHTML = pontoAtt ++
-      lvlData.pontuacao++
-      pontuacaoEl.innerHTML = lvlData.pontuacao
-
-      flashPrint(0, 100, 'CERTO !', infoEl)
-      flashPrint(200, 500, 'CERTO !', infoEl)
-      mostrarMorse()
-
+const vibrate = morse_str => {
+  const splited = morse_str.split('').join(' ').split('')
+  const patern = splited.map(caractere => {
+    if(caractere == '-'){
+      return 300
     } else {
-      lvlData.pontuacao--
-      pontuacaoEl.innerHTML = lvlData.pontuacao
-      flashPrint(0, 500,`${alfabeto[alfMorse.indexOf(morse)]}`, display)
-      vibrar(200)      
+      return 100
     }
   })
+  window.navigator.vibrate(patern)
+}
+
+function main(btn){
+
+  lvlData.level = parseInt(lvlData.pontuacao/10) + 1
+  levelEl.innerHTML = lvlData.level
+
+  const escolhido = alfabeto.indexOf(btn) // index da letra no []
+  const morse = display.innerHTML //morse
+  // const pontoAtt = parseInt(pontuacaoEl.innerHTML)
+  vibrate(morse)
+  
+  if (alfMorse[escolhido] == morse){
+    // pontuacaoEl.innerHTML = pontoAtt ++
+    lvlData.pontuacao++
+    pontuacaoEl.innerHTML = lvlData.pontuacao
+
+    flashPrint(0, 100, `${alfabeto[alfMorse.indexOf(morse)]}`, infoEl)
+    flashPrint(200, 500, 'CERTO !', infoEl)
+    mostrarMorse()
+
+  } else {
+    lvlData.pontuacao--
+    pontuacaoEl.innerHTML = lvlData.pontuacao
+    flashPrint(0, 500,`${alfabeto[alfMorse.indexOf(morse)]}`, display)
+    vibrar(200)      
+  }
+}
+
+botoesEl.forEach(btn => {
+  btn.addEventListener('click', function(){
+    main(btn.innerHTML)
+  })
+})
+document.addEventListener('keydown', function(keyboardEvent){
+  main(keyboardEvent.key.toUpperCase())
 })
 
 mostrarMorse()

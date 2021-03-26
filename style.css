@@ -6,7 +6,7 @@ body{
   margin: 0;
   padding: 0;
   text-align: center;
-  /* background-image: url('/img/bg2.jpg'); */
+  background-image: url('/img/bg2.jpg');
   background-repeat: no-repeat;
   background-size: 100vw;  
   background-color: rgb(8, 6, 39);
