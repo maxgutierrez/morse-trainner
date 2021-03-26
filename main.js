@@ -53,7 +53,6 @@ const lvlData = {
 const numAleatorio = ()=> numAleatorioEntre(0, lvlData.level)
 const morseAleatorio = ()=> alfMorse[numAleatorio()]
 const mostrarMorse = ()=> display.innerHTML = morseAleatorio()
-const vibrar = (ms)=> window.navigator.vibrate(ms)
 
 const flashPrint = (atraso, clearIn, txtPrint, tag)=>{
   const saveTagContent = tag.innerHTML
@@ -84,7 +83,6 @@ function main(btn){
   const escolhido = alfabeto.indexOf(btn) // index da letra no []
   const morse = display.innerHTML //morse
   // const pontoAtt = parseInt(pontuacaoEl.innerHTML)
-  vibrate(morse)
   
   if (alfMorse[escolhido] == morse){
     // pontuacaoEl.innerHTML = pontoAtt ++
@@ -99,8 +97,9 @@ function main(btn){
     lvlData.pontuacao--
     pontuacaoEl.innerHTML = lvlData.pontuacao
     flashPrint(0, 500,`${alfabeto[alfMorse.indexOf(morse)]}`, display)
-    vibrar(200)      
   }
+  vibrate(morse)
+
 }
 
 botoesEl.forEach(btn => {
