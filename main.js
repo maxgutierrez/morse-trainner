@@ -67,9 +67,9 @@ const vibrate = morse_str => {
   const splited = morse_str.split('').join(' ').split('')
   const patern = splited.map(caractere => {
     if(caractere == '-'){
-      return 300
+      return 150
     } else {
-      return 100
+      return 50
     }
   })
   window.navigator.vibrate(patern)
