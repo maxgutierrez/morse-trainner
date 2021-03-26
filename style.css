@@ -36,6 +36,10 @@ h2 {
   font-size: 80px;
   background-color: rgba(0, 255, 255, 0.207);
 }
+#info {
+  color: white;
+  font-size: 30px;
+}
 #botoes {
   width: 100vw;
   height: 200px;
