@@ -67,9 +67,9 @@ const vibrate = morse_str => {
   const splited = morse_str.split('').join(' ').split('')
   const patern = splited.map(caractere => {
     if(caractere == '-'){
-      return 150
+      return 200
     } else {
-      return 50
+      return 100
     }
   })
   window.navigator.vibrate(patern)
@@ -85,18 +85,16 @@ function atraso(ms){
   }
 }
 
-atraso('asdf')
-
 function main(btn){
 
-  lvlData.level = parseInt(lvlData.pontuacao/10) + 1
+  lvlData.level = parseInt(lvlData.pontuacao/20) + 1
   levelEl.innerHTML = lvlData.level
 
-  const escolhido = alfabeto.indexOf(btn) // index da letra no []
+  const escolhido_letra = alfabeto.indexOf(btn) // index da letra no []
   const morse_display = display.innerHTML //morse_display
   const letra_display = alfabeto[alfMorse.indexOf(morse_display)]
   
-  if (alfMorse[escolhido] == morse_display){// SE ACERTO ===
+  if (alfMorse[escolhido_letra] == morse_display){// SE ACERTO ===
     lvlData.pontuacao++
     pontuacaoEl.innerHTML = lvlData.pontuacao
     flashPrint(0, 500, letra_display, infoEl)
@@ -107,7 +105,7 @@ function main(btn){
     pontuacaoEl.innerHTML = lvlData.pontuacao
     flashPrint(0, 500, letra_display, display)
   }
-  vibrate(morse_display)
+  // vibrate(morse_display)
 
 }
 

@@ -95,3 +95,8 @@ th {
   padding: 0px;
   font-size: 30px;
 }
+.frase{
+  color: rgb(80, 187, 226);
+  text-shadow: -1px 0px 2px rgb(0, 0, 0);
+  
+}
