@@ -107,6 +107,7 @@ function main(btn){
   }
   // vibrate(morse_display)
 
+  
 }
 
 botoesEl.forEach(btn => {
