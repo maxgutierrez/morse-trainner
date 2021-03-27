@@ -41,16 +41,20 @@ const alfMorse = [
 const display = document.querySelector('#display')
 const botoesEl = document.querySelectorAll('button')
 btnListEl = document.querySelector('#botoes')
-const pontuacaoEl = document.querySelector('#pontuacao')
+const xp_atualEl = document.querySelector('#xp_atual')
 const infoEl = document.querySelector('#info')
 
 const levelEl = document.querySelector('#lvl')
-const lvlData = {
+const data = {
   'level':1,
-  'pontuacao':0
+  'xp_atual':0,
+  'letrasDoLvl':function() {
+    return alfabeto.slice(0, this.level+1)
+  },
+  'display_crr':''
 }
 
-const numAleatorio = ()=> numAleatorioEntre(0, lvlData.level)
+const numAleatorio = ()=> numAleatorioEntre(0, data.level)
 const morseAleatorio = ()=> alfMorse[numAleatorio()]
 const mostrarMorse = ()=> display.innerHTML = morseAleatorio()
 
@@ -84,39 +88,51 @@ function atraso(ms){
     }, ms);
   }
 }
+function revelarButtons() {
+  return botoesEl.forEach(button =>{
+    if(data.letrasDoLvl().indexOf(button.innerHTML) == -1){
+      button.style.display = 'none'
+    } else {
+      button.style.display = 'inline'
+    }
+  })
+}
 
 function main(btn){
-
-  lvlData.level = parseInt(lvlData.pontuacao/20) + 1
-  levelEl.innerHTML = lvlData.level
+  data.level = 1 + parseInt(data.xp_atual/10 ) 
+  levelEl.innerHTML = data.level
 
   const escolhido_letra = alfabeto.indexOf(btn) // index da letra no []
   const morse_display = display.innerHTML //morse_display
   const letra_display = alfabeto[alfMorse.indexOf(morse_display)]
   
   if (alfMorse[escolhido_letra] == morse_display){// SE ACERTO ===
-    lvlData.pontuacao++
-    pontuacaoEl.innerHTML = lvlData.pontuacao
-    flashPrint(0, 500, letra_display, infoEl)
-    atraso(600)(mostrarMorse)
+    data.xp_atual++
+    xp_atualEl.innerHTML = data.xp_atual
+    flashPrint(0, 300, letra_display, infoEl)
+    atraso(300)(mostrarMorse)
 
   } else {//                           SE ERRO ===
-    lvlData.pontuacao--
-    pontuacaoEl.innerHTML = lvlData.pontuacao
+    data.xp_atual--
+    xp_atualEl.innerHTML = data.xp_atual
     flashPrint(0, 500, letra_display, display)
   }
   // vibrate(morse_display)
+  revelarButtons()
 
   
 }
 
 botoesEl.forEach(btn => {
-  btn.addEventListener('click', function(){
+  btn.addEventListener('click', function(){ //CLICK
     main(btn.innerHTML)
   })
 })
-document.addEventListener('keydown', function(keyboardEvent){
+document.addEventListener('keydown', function(keyboardEvent){// KEYDOWN
   main(keyboardEvent.key.toUpperCase())
 })
 
+
+
 mostrarMorse()
+revelarButtons()
